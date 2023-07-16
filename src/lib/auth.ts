@@ -14,8 +14,14 @@ export const authoptions: NextAuthOptions = {
   },
   providers: [
     GitHubProvider({
-      clientId: 'b75c7b0eca22932a34b4',
-      clientSecret: 'a6368b7892f2e4a692b5bceb15656cac0520affd',
+      clientId:
+        process.env.NODE_ENV === 'production'
+          ? process.env.GitHub_CLIENT_ID_PROD!
+          : process.env.GitHub_CLIENT_ID!,
+      clientSecret:
+        process.env.NODE_ENV === 'production'
+          ? process.env.GitHub_CLIENT_SECRET_PROD!
+          : process.env.GitHub_CLIENT_SECRET!,
     }),
   ],
   callbacks: {
